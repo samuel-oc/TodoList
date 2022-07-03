@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Samuel de Oliveira">
+    <title>TodoList Vuejs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main id="app">
+        <header>
+            <h2>TodoList Vuejs</h2>
+            <form>
+                <div>
+                    <p>{{ currentTodo }}</p>
+                    <input type="text" id="pesquisa" v-model="currentTodo" placeholder="Descrição" maxlength="500">
+                    <button @click.prevent="addTodo">+</button>
+                </div>
+            </form>
+            <section>
+                <ol>
+                    <li v-for="todo in filteredTodos" :key="todo.text" @click="toggleTodo(todo)">
+                        <div>
+                            <input type="checkbox" :checked="todo.done">
+                            <label>
+                                <del v-if="todo.done">
+                                    {{ todo.text }}
+                                </del>
+                                <span v-else>
+                                    {{ todo.text }}
+                                </span>
+                            </label>
+                        </div>
+                        <img src="fechar.png" @click="delTodo(todo)" alt="deletar to-do">
+                    </li>
+                </ol>
+            </section>
+
+        </header>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="todoList.js"></script>
+</body>
+
+</html>
